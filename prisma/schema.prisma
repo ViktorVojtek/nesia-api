@@ -52,7 +52,7 @@ model Product {
 
 model Company {
   id        String   @id @default(uuid())
-  title     String   @db.VarChar(255)
+  title     String   @unique @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   users     User[]
@@ -65,5 +65,6 @@ model User {
   companyId String
   email     String   @unique
   name      String?
+  password  String
   products  Product[]
 }

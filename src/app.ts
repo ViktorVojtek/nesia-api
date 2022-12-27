@@ -1,7 +1,7 @@
 import express from 'express';
 
-import userEndpoints from './user';
-import productEndpoints from './product';
+import userRoutes from './routes/user.routes';
+import productRoutes from './routes/product.routes';
 
 const app = express();
 const port = 3000;
@@ -13,8 +13,8 @@ const App = () => {
     res.json({ message: 'Hello World!' });
   });
 
-  userEndpoints(app);
-  productEndpoints(app);
+  userRoutes(app);
+  productRoutes(app);
 
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
