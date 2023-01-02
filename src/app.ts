@@ -1,13 +1,15 @@
 import express from 'express';
+import cors from 'cors';
 
 import userRoutes from './routes/user.routes';
 import productRoutes from './routes/product.routes';
 
 const app = express();
-const port = 3000;
+const port = 3013;
 
 const App = () => {
   app.use(express.json());
+  app.use(cors());
 
   app.get('/', (_req, res) => {
     res.json({ message: 'Hello World!' });

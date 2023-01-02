@@ -50,19 +50,8 @@ model Product {
   authorId   String
 }
 
-model Company {
-  id        String   @id @default(uuid())
-  title     String   @unique @db.VarChar(255)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  users     User[]
-  userIds   String[]
-}
-
 model User {
   id        String   @id @default(uuid())
-  company   Company  @relation(fields: [companyId], references: [id])
-  companyId String
   email     String   @unique
   name      String?
   password  String

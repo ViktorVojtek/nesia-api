@@ -33,7 +33,7 @@ export default (app: Express) => {
 
     const token = await generateToken(user.id);
     
-    res.json({...user, token});
+    res.json({id: user.id, email: user.email, token});
   });
 
   app.post('/user/register', async (req, res) => {
@@ -46,23 +46,13 @@ export default (app: Express) => {
       data: {
         name: req.body.name,
         email: req.body.email,
-        password: hashedPassword,
-        company: {
-          connectOrCreate: {
-            where: {
-              title: req.body?.company?.title,
-            },
-            create: {
-              title: req.body.company.title,
-            },
-          },
-        },
+        password: hashedPassword
       },
     });
 
     const token = await generateToken(user.id);
 
-    res.json({...user, token});
+    res.json({id: user.id, email: user.email, token});
   });
 
   app.put('/user/:id', async (req, res) => {
@@ -72,12 +62,7 @@ export default (app: Express) => {
       },
       data: {
         name: req.body.name,
-        email: req.body.email,
-        company: {
-          update: {
-            title: req.body.company.title,
-          },
-        },
+        email: req.body.email
       },
     });
 
